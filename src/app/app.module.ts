@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { FooterLayoutComponent } from './layout/footer-layout/footer-layout.component';
 import { HeaderLayoutComponent } from './layout/header-layout/header-layout.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { HeaderLayoutComponent } from './layout/header-layout/header-layout.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
