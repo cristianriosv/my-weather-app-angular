@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutocompleteApiComponent } from './autocomplete-api.component';
+import { AutocompleteAsyncComponent } from './autocomplete.component';
 
 describe('AutocompleteApiComponent', () => {
-  let component: AutocompleteApiComponent;
-  let fixture: ComponentFixture<AutocompleteApiComponent>;
+  let component: AutocompleteAsyncComponent;
+  let fixture: ComponentFixture<AutocompleteAsyncComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AutocompleteApiComponent]
+      declarations: [AutocompleteAsyncComponent]
     });
-    fixture = TestBed.createComponent(AutocompleteApiComponent);
+    fixture = TestBed.createComponent(AutocompleteAsyncComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
