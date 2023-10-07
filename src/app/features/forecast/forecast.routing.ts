@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeatureForecastComponent } from './pages/forecast/forecast.component';
-import { AutocompleteApiComponent } from 'src/app/shared/components/autocomplete-api/autocomplete-api.component';
+import { AutocompleteComponent } from 'src/app/shared/components/autocomplete/autocomplete.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +14,7 @@ export const routes: Routes = [
   declarations: [FeatureForecastComponent],
   imports: [
     RouterModule.forChild(routes),
-    AutocompleteApiComponent
+    AutocompleteComponent
   ],
   exports: [RouterModule]
 })

@@ -1,4 +1,9 @@
 <div>
     This is the forecast module content
-    <app-autocomplete-api></app-autocomplete-api>
+    <app-autocomplete
+        placeholder="Enter city name"
+        (onInputChange)="getPossibleCitiesFromService($event)"
+        (onSelectChange)="getForecastFromService($event)"
+        [options]="possibleCities">
+    </app-autocomplete>
 </div>
