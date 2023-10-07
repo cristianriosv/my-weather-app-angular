@@ -5,13 +5,13 @@ import { ForecastService } from '../../services/forecast.service';
 @Component({
   selector: 'feature-forecast',
   templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.sass']
+  styleUrls: ['./forecast.component.sass'],
 })
 export class FeatureForecastComponent {
 
   possibleCities: { label: string, value: GeocodeData }[] = [];
 
-  currentCityForecast: ForecastData | null = null;
+  currentCityForecast: ForecastData["list"] | [] = [];
 
   constructor(private geocodeService: GeocodeService, private forecastService: ForecastService) { }
 
@@ -22,8 +22,10 @@ export class FeatureForecastComponent {
   }
 
   getForecastFromService(optionSelected: { value: GeocodeData }): void {
-    this.forecastService.getGeocodeFromQuery(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecast => {console.log(forecast)
-      this.currentCityForecast = forecast;
+    this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecast => {
+      if (forecast) {
+        this.currentCityForecast = forecast;
+      }
     });
   }
 

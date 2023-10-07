@@ -1,28 +1,17 @@
 interface ForecastData {
     cod: string,
     cnt: number,
-    list: [
-        {
-            dt: number,
-            temp: {
-                day: number,
-                min: number,
-                max: number,
-            },
-            feels_like: {
-                day: number
-            },
-            pressure: number,
-            humidity: number,
-            weather: [
-                {
-                    main: string,
-                    description: string,
-                    icon: string
-                }
-            ],
-            speed: number,
-            deg: number
-        }
-    ]
+    list: ForecastDataList[]
+}
+
+interface ForecastDataList {
+    dt: number,
+    main: {
+        feels_like: number,
+        temp: number,
+        temp_min: number,
+        temp_max: number,
+        humidity: number
+        pressure: number
+    }
 }

@@ -6,4 +6,18 @@
         (onSelectChange)="getForecastFromService($event)"
         [options]="possibleCities">
     </app-autocomplete>
+
+    <table>
+        <tr>
+            <th>dt</th>
+            <th>Temp</th>
+            <th>Feels like</th>
+        </tr>
+
+        <tr *ngFor="let forecast of currentCityForecast">
+            <td>{{forecast.dt}}</td>
+            <td>{{forecast.main.temp}}</td>
+            <td>{{forecast.main.feels_like}}</td>
+        </tr>
+    </table>
 </div>
