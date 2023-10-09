@@ -6,6 +6,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { debounceTime } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -34,7 +35,7 @@ export class AutocompleteComponent {
   inputFieldControl = new FormControl();
 
   constructor() {
-    this.inputFieldControl.valueChanges.subscribe(val => {
+    this.inputFieldControl.valueChanges.pipe(debounceTime(500)).subscribe(val => {
       if (typeof val === 'string') {
         this.onInputChange.emit(val);
       }
