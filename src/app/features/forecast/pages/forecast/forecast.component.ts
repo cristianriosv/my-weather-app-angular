@@ -34,6 +34,7 @@ export class FeatureForecastComponent {
   }
 
   getForecastFromService(optionSelected: { value: GeocodeData }): void {
+    this.currentCityForecast = undefined;
     this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecastData => {
       if (forecastData) {
         this.currentCityForecast = forecastData.forecast;
