@@ -7,6 +7,9 @@
         [options]="possibleCities">
     </app-autocomplete>
 
+    <current-weather-component *ngIf="currentCityForecastToday" [data]="currentCityForecastToday.main">
+    </current-weather-component>
+
     <table-component *ngIf="currentCityForecast"
         [columns]="columns"
         [data]="currentCityForecast"

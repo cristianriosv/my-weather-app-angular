@@ -11,6 +11,8 @@ export class FeatureForecastComponent {
 
   possibleCities: { label: string, value: GeocodeData }[] = [];
 
+  currentCityForecastToday?: ForecastDataItem;
+
   currentCityForecast?: ReducedForecastData;
 
   columns = [
@@ -37,6 +39,7 @@ export class FeatureForecastComponent {
     this.currentCityForecast = undefined;
     this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecastData => {
       if (forecastData) {
+        this.currentCityForecastToday = forecastData.current;
         this.currentCityForecast = forecastData.forecast;
       }
     });
