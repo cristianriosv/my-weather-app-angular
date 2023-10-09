@@ -1,4 +1,5 @@
 <div class="container">
+    <h3 *ngIf="!currentCityForecastToday">Select the place you want to see the current weather and forecast:</h3>
     <app-autocomplete
         placeholder="Enter city name"
         (onInputChange)="getPossibleCitiesFromService($event)"
