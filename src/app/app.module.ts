@@ -16,7 +16,8 @@ import { reducers, metaReducers } from './store';
   declarations: [
     AppComponent,
     ContentLayoutComponent,
-    FooterLayoutComponent
+    FooterLayoutComponent,
+    HeaderLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +26,7 @@ import { reducers, metaReducers } from './store';
       metaReducers
     }),
     BrowserAnimationsModule,
-    HttpClientModule,
-    HeaderLayoutComponent
+    HttpClientModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FeatureForecastComponent } from './pages/forecast/forecast.component';
 import { AutocompleteComponent } from 'src/app/shared/components/autocomplete/autocomplete.component';
@@ -24,7 +23,6 @@ export const routes: Routes = [
     CurrentWeatherComponent,
     NgFor,
     NgIf,
-    MatCardModule,
     MatIconModule
   ],
   exports: [RouterModule]

@@ -9,25 +9,21 @@
 
     <div *ngIf="currentCityForecastToday && currentCityForecast">
         <div class="card-current-weather">
-            <mat-card>
-                <mat-card-content>
-                    <h2>Current weather:</h2>
-                    <current-weather-component [data]="currentCityForecastToday.main">
-                    </current-weather-component>
-                </mat-card-content>
-            </mat-card>
+            <div>
+                <h2>Current weather:</h2>
+                <current-weather-component [data]="currentCityForecastToday.main">
+                </current-weather-component>
+            </div>
         </div>
         <div class="card-forecast">
-            <mat-card>
-                <mat-card-content>
-                    <h2>Forecast next 5 days:</h2>
-                    <table-component
-                        [columns]="columns"
-                        [data]="currentCityForecast"
-                        [displayedColumns]="displayedColumns">
-                    </table-component>
-                </mat-card-content>
-            </mat-card>
+            <div>
+                <h2>Forecast next 5 days:</h2>
+                <table-component
+                    [columns]="columns"
+                    [data]="currentCityForecast"
+                    [displayedColumns]="displayedColumns">
+                </table-component>
+            </div>
         </div>
     </div>
 </div>
