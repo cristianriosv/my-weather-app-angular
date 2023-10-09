@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -17,7 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatOptionModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule
   ]
 })
 

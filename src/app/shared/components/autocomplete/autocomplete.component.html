@@ -1,12 +1,13 @@
 <div>
     <mat-form-field class="full-width">
-       <input 
+        <mat-label>{{placeholder}}</mat-label>
+        <input 
             type="text" 
             [placeholder]="placeholder"
             [formControl]="inputFieldControl"
             matInput
             [matAutocomplete]="auto">
-
+        <mat-icon matSuffix>{{'search'}}</mat-icon>
         <mat-autocomplete
             [displayWith]="displayWith"
             (optionSelected)="onOptionSelected($event)"
