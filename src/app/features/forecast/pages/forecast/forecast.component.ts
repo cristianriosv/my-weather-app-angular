@@ -11,7 +11,7 @@ export class FeatureForecastComponent {
 
   possibleCities: { label: string, value: GeocodeData }[] = [];
 
-  currentCityForecast: ForecastData["list"] | [] = [];
+  currentCityForecast: ForecastDataList[] = [];
 
   constructor(private geocodeService: GeocodeService, private forecastService: ForecastService) { }
 
