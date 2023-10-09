@@ -7,19 +7,9 @@
         [options]="possibleCities">
     </app-autocomplete>
 
-    <table *ngIf="currentCityForecast">
-        <tr>
-            <th>dt</th>
-            <th>Max</th>
-            <th>Min</th>
-            <th>Humidity</th>
-        </tr>
-
-        <tr *ngFor="let forecast of currentCityForecast">
-            <td>{{forecast.dateString}}</td>
-            <td>{{forecast.temp_max}}</td>
-            <td>{{forecast.temp_min}}</td>
-            <td>{{forecast.humidity}}</td>
-        </tr>
-    </table>
+    <table-component *ngIf="currentCityForecast"
+        [columns]="columns"
+        [data]="currentCityForecast"
+        [displayedColumns]="displayedColumns">
+    </table-component>
 </div>

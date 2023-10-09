@@ -13,7 +13,19 @@ export class FeatureForecastComponent {
 
   currentCityForecast?: ReducedForecastData;
 
-  constructor(private geocodeService: GeocodeService, private forecastService: ForecastService) { }
+  columns = [
+    { columnDef: 'dateString', header: 'Date', cell: (element: ForecastItemData) => `${element.dateString}`, sort: true },
+    { columnDef: 'temp_max', header: 'Max', cell: (element: ForecastItemData) => `${element.temp_max}` },
+    { columnDef: 'temp_min', header: 'Min', cell: (element: ForecastItemData) => `${element.temp_min}` },
+    { columnDef: 'humidity', header: 'Humidity', cell: (element: ForecastItemData) => `${element.humidity}` },
+  ]
+
+  displayedColumns: string[] = ['dateString', 'temp_max', 'temp_min', 'humidity'];
+
+  constructor(
+    private geocodeService: GeocodeService,
+    private forecastService: ForecastService
+  ) { }
 
   getPossibleCitiesFromService(val: string): void {
     this.geocodeService.getGeocodeFromQuery(val).subscribe(cities => {
