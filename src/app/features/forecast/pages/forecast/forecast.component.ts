@@ -11,7 +11,7 @@ export class FeatureForecastComponent {
 
   possibleCities: { label: string, value: GeocodeData }[] = [];
 
-  currentCityForecast: ForecastDataList[] = [];
+  currentCityForecast?: ReducedForecastData;
 
   constructor(private geocodeService: GeocodeService, private forecastService: ForecastService) { }
 
@@ -22,9 +22,9 @@ export class FeatureForecastComponent {
   }
 
   getForecastFromService(optionSelected: { value: GeocodeData }): void {
-    this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecast => {
-      if (forecast) {
-        this.currentCityForecast = forecast;
+    this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecastData => {
+      if (forecastData) {
+        this.currentCityForecast = forecastData.forecast;
       }
     });
   }

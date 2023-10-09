@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeatureForecastComponent } from './pages/forecast/forecast.component';
 import { AutocompleteComponent } from 'src/app/shared/components/autocomplete/autocomplete.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 export const routes: Routes = [
   {
@@ -16,7 +16,8 @@ export const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     AutocompleteComponent,
-    NgFor
+    NgFor,
+    NgIf
   ],
   exports: [RouterModule]
 })
