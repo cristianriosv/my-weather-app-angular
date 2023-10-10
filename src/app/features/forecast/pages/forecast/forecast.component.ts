@@ -34,7 +34,7 @@ export class FeatureForecastComponent {
 
   ngOnInit(): void {
     this.geocodeLocations$.subscribe((data) => {
-      this.possibleCities = data.map((item) => ({ label: item.name, value: item }));
+      this.possibleCities = data.map((item) => ({ label: `${item.name}, ${item.state}, ${item.country}`, value: item }));
     });
     this.forecast$.subscribe((data) => {
       if (data) {
