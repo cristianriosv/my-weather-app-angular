@@ -6,16 +6,12 @@ import { GeoCodeEffects } from './geocode/geocode.effects';
 import { forecastReducer } from './forecast/forecast.reducer';
 import { ForecastEffects } from './forecast/forecast.effects';
 
-export interface State {
-
-}
-
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<object> = {
   geocodeReducer,
   forecastReducer
 };
 
-export const effects: any[] = [
+export const effects = [
   GeoCodeEffects,
   ForecastEffects
 ];

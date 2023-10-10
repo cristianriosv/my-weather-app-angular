@@ -12,6 +12,6 @@ export const initialState: ForecastState = { current: null, forecast: null, erro
 export const forecastReducer = createReducer(
     initialState,
     on(getForecastFromLocation, () => initialState),
-    on(getForecastFromLocationSuccess, (_, data) => ({ current: data.current, forecast: data.forecast, error: false })),
-    on(getForecastFromLocationError, (_) => ({ ...initialState, error: true }))
+    on(getForecastFromLocationSuccess, (state, data) => ({ ...state, current: data.current, forecast: data.forecast, error: false })),
+    on(getForecastFromLocationError, (state) => ({ ...state, ...initialState, error: true }))
 );

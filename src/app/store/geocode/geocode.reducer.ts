@@ -11,6 +11,6 @@ export const initialState: GeocodeState = { geocodeLocations: [], error: false }
 export const geocodeReducer = createReducer(
     initialState,
     on(getGeocodeLocations, () => initialState),
-    on(getGeocodeLocationsSuccess, (_, data) => ({ geocodeLocations: data.geocodeLocations, error: false })),
-    on(getGeocodeLocationsError, (_) => ({ geocodeLocations: [], error: true }))
+    on(getGeocodeLocationsSuccess, (state, data) => ({ ...state, geocodeLocations: data.geocodeLocations, error: false })),
+    on(getGeocodeLocationsError, (state) => ({ ...state, geocodeLocations: [], error: true }))
 );

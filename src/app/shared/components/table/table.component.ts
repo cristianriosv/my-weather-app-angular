@@ -4,7 +4,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
-  selector: 'table-component',
+  selector: 'app-table-component',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.sass'],
   standalone: true,
@@ -16,8 +16,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 })
 export class TableComponent {
   @Input() columns!: { columnDef: string, header: string, cell: (element: any) => string, sort?: boolean }[];
-  @Input() data!: Object[];
-  dataSource: MatTableDataSource<Object> = new MatTableDataSource();
+  @Input() data!: object[];
+  dataSource: MatTableDataSource<object> = new MatTableDataSource();
   @Input() displayedColumns!: string[];
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();

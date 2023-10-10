@@ -7,7 +7,7 @@ import { forecastSelector } from 'src/app/store/forecast/forecast.selectors';
 import { getForecastFromLocation } from 'src/app/store/forecast/forecast.actions';
 
 @Component({
-  selector: 'feature-forecast',
+  selector: 'app-feature-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.sass'],
 })

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
-import { ForecastDataUtils } from '../utils/forecastData.utils';
 
 @Injectable({
   providedIn: 'root'

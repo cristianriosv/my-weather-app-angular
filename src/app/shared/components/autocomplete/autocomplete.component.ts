@@ -27,17 +27,17 @@ import { debounceTime } from 'rxjs';
 export class AutocompleteComponent {
 
   @Input() options: { label: string, value: any }[] = [];
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
 
-  @Output() onInputChange = new EventEmitter<string>();
-  @Output() onSelectChange = new EventEmitter<{ label: string, value: any }>();
+  @Output() inputChange = new EventEmitter<string>();
+  @Output() selectChange = new EventEmitter<{ label: string, value: any }>();
 
   inputFieldControl = new FormControl();
 
   constructor() {
     this.inputFieldControl.valueChanges.pipe(debounceTime(500)).subscribe(val => {
       if (typeof val === 'string') {
-        this.onInputChange.emit(val);
+        this.inputChange.emit(val);
       }
     });
   }
@@ -47,7 +47,7 @@ export class AutocompleteComponent {
   }
 
   onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    this.onSelectChange.emit(event.option.value);
+    this.selectChange.emit(event.option.value);
   }
 
 }
