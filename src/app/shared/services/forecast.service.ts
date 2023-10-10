@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForecastService {
 
-  apiKey = 'cf3e3bb938b7dc300137e6010fbe89e7';
+  apiKey = environment.API_KEY;
 
   constructor(private http: HttpClient) { } 
 
