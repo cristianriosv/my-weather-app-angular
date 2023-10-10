@@ -4,6 +4,7 @@ import { getForecastFromLocation, getForecastFromLocationSuccess, getForecastFro
 import { Injectable } from '@angular/core';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ForecastDataUtils } from 'src/app/shared/utils/forecastData.utils';
 
 @Injectable()
 export class ForecastEffects {
@@ -17,7 +18,12 @@ export class ForecastEffects {
             ofType(getForecastFromLocation),
             switchMap(({ lat, lon }) => this.forecastService.getForecastFromService(lat, lon).pipe(
                 map((res) => {
-                    return getForecastFromLocationSuccess(res)
+                    const groupedForecastByDays = ForecastDataUtils.groupForecastByDays(res.list);
+                    const reducedForecastData = ForecastDataUtils.getMaximumValuesFromGroupedForecastData(groupedForecastByDays);
+                    return getForecastFromLocationSuccess({
+                      current: res.list[0],
+                      forecast: reducedForecastData
+                    })
                 }),
                 catchError(() => of(getForecastFromLocationError()))
             ))
