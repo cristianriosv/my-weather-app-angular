@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { GeocodeService } from '../../shared/services/geocode.service';
-import { getGeocodeLocations, getGeocodeLocationsSuccess, getGeocodeLocationsError } from '../actions/geocode.actions';
+import { getGeocodeLocations, getGeocodeLocationsSuccess, getGeocodeLocationsError } from './geocode.actions';
 import { Injectable } from '@angular/core';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';

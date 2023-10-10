@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ForecastService } from '../../services/forecast.service';
 import { AppState } from 'src/app/store/general.state';
-import { geocodeSelector } from 'src/app/store/selectors/geocode.selectors';
-import { getGeocodeLocations } from 'src/app/store/actions/geocode.actions';
+import { geocodeSelector } from 'src/app/store/geocode/geocode.selectors';
+import { getGeocodeLocations } from 'src/app/store/geocode/geocode.actions';
+import { forecastSelector } from 'src/app/store/forecast/forecast.selectors';
+import { getForecastFromLocation } from 'src/app/store/forecast/forecast.actions';
 
 @Component({
   selector: 'feature-forecast',
@@ -16,9 +17,11 @@ export class FeatureForecastComponent {
 
   geocodeLocations$ = this.store.select(geocodeSelector);
 
-  currentCityForecastToday?: ForecastDataItem;
+  forecast$ = this.store.select(forecastSelector);
 
-  currentCityForecast?: ReducedForecastData;
+  currentCityForecastToday: ForecastDataItem | null = null;
+
+  currentCityForecast: ReducedForecastData | null = null;
   
   columns = [
     { columnDef: 'dateString', header: 'Date', cell: (element: ForecastItemData) => `${element.dateString}`, sort: true },
@@ -33,25 +36,26 @@ export class FeatureForecastComponent {
     this.geocodeLocations$.subscribe((data) => {
       this.possibleCities = data.map((item) => ({ label: item.name, value: item }));
     });
+    this.forecast$.subscribe((data) => {
+      if (data) {
+        this.currentCityForecastToday = data.current;
+        this.currentCityForecast = data.forecast;
+      }
+    });
   }
 
   constructor(
-    private forecastService: ForecastService,
     private store: Store<AppState>
   ) { }
 
   getPossibleCitiesFromService(value: string): void {
-    this.store.dispatch(getGeocodeLocations({ query: value }))
+    this.store.dispatch(getGeocodeLocations({ query: value }));
   }
 
   getForecastFromService(optionSelected: { value: GeocodeData }): void {
-    this.currentCityForecast = undefined;
-    this.forecastService.getForecastFromService(optionSelected.value.lat, optionSelected.value.lon).subscribe(forecastData => {
-      if (forecastData) {
-        this.currentCityForecastToday = forecastData.current;
-        this.currentCityForecast = forecastData.forecast;
-      }
-    });
+    this.currentCityForecast = null;
+    this.currentCityForecast = null;
+    this.store.dispatch(getForecastFromLocation({ lat: optionSelected.value.lat, lon: optionSelected.value.lon}))
   }
 
 }

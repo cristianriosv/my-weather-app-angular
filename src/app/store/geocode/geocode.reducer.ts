@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getGeocodeLocations, getGeocodeLocationsError, getGeocodeLocationsSuccess } from '../actions/geocode.actions';
+import { getGeocodeLocations, getGeocodeLocationsError, getGeocodeLocationsSuccess } from './geocode.actions';
 
 export interface GeocodeState {
     geocodeLocations: GeocodeData[];
