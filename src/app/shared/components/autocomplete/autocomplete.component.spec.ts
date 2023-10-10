@@ -1,16 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AutocompleteAsyncComponent } from './autocomplete.component';
+import { AutocompleteComponent } from './autocomplete.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AutocompleteApiComponent', () => {
-  let component: AutocompleteAsyncComponent;
-  let fixture: ComponentFixture<AutocompleteAsyncComponent>;
+  let component: AutocompleteComponent;
+  let fixture: ComponentFixture<AutocompleteComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AutocompleteAsyncComponent]
+      imports: [
+        AutocompleteComponent,
+        BrowserAnimationsModule
+      ]
     });
-    fixture = TestBed.createComponent(AutocompleteAsyncComponent);
+    fixture = TestBed.createComponent(AutocompleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
