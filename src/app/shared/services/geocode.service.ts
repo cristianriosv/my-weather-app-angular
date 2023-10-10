@@ -14,7 +14,9 @@ export class GeocodeService {
   getGeocodeFromQuery(val: string): Observable<GeocodeData[]> {
     return this.http.get<GeocodeData[]>(`https://api.openweathermap.org/geo/1.0/direct?q=${val}&limit=10&appid=${this.apiKey}`).pipe(
       map((res: GeocodeData[]) => res),
-      catchError(() => [])
+      catchError((error) => {
+        throw error(error)
+      })
     );
   }
 }

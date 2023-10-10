@@ -10,7 +10,8 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { FooterLayoutComponent } from './layout/footer-layout/footer-layout.component';
 import { HeaderLayoutComponent } from './layout/header-layout/header-layout.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store';
+import { reducers, effects } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,10 @@ import { reducers, metaReducers } from './store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects)
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

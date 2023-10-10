@@ -1,19 +1,17 @@
-import { isDevMode } from '@angular/core';
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
 } from '@ngrx/store';
+import { geocodeReducer } from './reducers/geocode.reducer';
+import { GeoCodeEffects } from './effects/geocode.effects';
 
 export interface State {
 
 }
 
 export const reducers: ActionReducerMap<State> = {
-
+  geocodeReducer: geocodeReducer
 };
 
-
-export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
+export const effects: any[] = [
+  GeoCodeEffects
+];

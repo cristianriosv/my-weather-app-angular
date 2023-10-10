@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { GeocodeService } from '../../services/geocode.service';
+import { Store } from '@ngrx/store';
 import { ForecastService } from '../../services/forecast.service';
+import { AppState } from 'src/app/store/general.state';
+import { geocodeSelector } from 'src/app/store/selectors/geocode.selectors';
+import { getGeocodeLocations } from 'src/app/store/actions/geocode.actions';
 
 @Component({
   selector: 'feature-forecast',
@@ -11,10 +14,12 @@ export class FeatureForecastComponent {
 
   possibleCities: { label: string, value: GeocodeData }[] = [];
 
+  geocodeLocations$ = this.store.select(geocodeSelector);
+
   currentCityForecastToday?: ForecastDataItem;
 
   currentCityForecast?: ReducedForecastData;
-
+  
   columns = [
     { columnDef: 'dateString', header: 'Date', cell: (element: ForecastItemData) => `${element.dateString}`, sort: true },
     { columnDef: 'temp_max', header: 'Max', cell: (element: ForecastItemData) => `${element.temp_max}` },
@@ -24,15 +29,19 @@ export class FeatureForecastComponent {
 
   displayedColumns: string[] = ['dateString', 'temp_max', 'temp_min', 'humidity'];
 
+  ngOnInit(): void {
+    this.geocodeLocations$.subscribe((data) => {
+      this.possibleCities = data.map((item) => ({ label: item.name, value: item }));
+    });
+  }
+
   constructor(
-    private geocodeService: GeocodeService,
-    private forecastService: ForecastService
+    private forecastService: ForecastService,
+    private store: Store<AppState>
   ) { }
 
-  getPossibleCitiesFromService(val: string): void {
-    this.geocodeService.getGeocodeFromQuery(val).subscribe(cities => {
-      this.possibleCities = cities.map(city => ({ label: `${city.name}, ${city.state}`, value: city }))
-    });
+  getPossibleCitiesFromService(value: string): void {
+    this.store.dispatch(getGeocodeLocations({ query: value }))
   }
 
   getForecastFromService(optionSelected: { value: GeocodeData }): void {
